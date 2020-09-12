@@ -17,7 +17,7 @@ namespace _06_Lettertype_Chaos
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new Lettertype_Chaos());
         }
     }
 }
