@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace _06_Lettertype_Chaos
@@ -48,7 +42,6 @@ namespace _06_Lettertype_Chaos
             Random rnd = new Random();
 
             int counter = 0;
-
             foreach (char ch in richTextBox1.Text.ToCharArray())
             {
                 int randomNr = rnd.Next(1, CollectionSize);
@@ -60,20 +53,19 @@ namespace _06_Lettertype_Chaos
                     p.Y += 1;
                 } else {
                     richTextBox2.Text += ch;
+                    
                     richTextBox2.Select(counter, counter + 1);
-                    // new Font(fontCollection[randomNr], 14);
+                    
+                    //richTextBox2.SelectionFont = new Font(fontCollection[randomNr], 20);
 
-                    richTextBox2.SelectionFont = new Font(fontCollection[randomNr], 14);
+                    richTextBox2.DeselectAll();
                 }
 
                 p.X += 1;
                 counter++;
+
+                Console.WriteLine($"randomNr{randomNr} + ch{ch} counter{counter}");
             }
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -84,14 +76,22 @@ namespace _06_Lettertype_Chaos
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            richTextBox2.Select(0, 10);
+            int i = 0;
+            foreach (char c in richTextBox2.Text)
+            {
+                i++;
+                richTextBox2.Select(i - 1, 1);
 
-            Random rnd = new Random();
-            int randomNr = rnd.Next(1, CollectionSize);
-            richTextBox2.SelectionFont = new Font(fontCollection[randomNr], 14);
+                Random rnd = new Random();
+                int randomNr = rnd.Next(1, CollectionSize);
+                richTextBox2.SelectionFont = new Font(fontCollection[randomNr], 14);
 
-            Console.WriteLine($"{richTextBox2.SelectedRtf}");
-            Console.WriteLine(richTextBox2.SelectedText.Count());
+                Console.WriteLine($"{richTextBox2.SelectedRtf}");
+                richTextBox2.DeselectAll();
+                //Console.WriteLine($"{i} <i c> {c}");
+            }
+
+            //Console.WriteLine(richTextBox2.SelectedText.Count());
         }
     }
 }

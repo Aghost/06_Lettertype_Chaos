@@ -41,7 +41,6 @@
             this.richTextBox1.Size = new System.Drawing.Size(776, 172);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = "";
-            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // button1
             // 
@@ -60,7 +59,6 @@
             this.richTextBox2.Size = new System.Drawing.Size(776, 172);
             this.richTextBox2.TabIndex = 0;
             this.richTextBox2.Text = "";
-            this.richTextBox2.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // btnSelect
             // 
