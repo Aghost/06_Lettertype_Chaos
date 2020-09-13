@@ -13,7 +13,7 @@ namespace _06_Lettertype_Chaos
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            richTextBox1.Text = "0123456789abcdefghijklmnopqrstuvwxyz\n0123456789abcdefghijklmnopqrstuvwxyz\n";
+            richTextBox1.Text = "0123456789abcdefg\nhijklmnopqrstuvwxyz\n0123456789abcdefg\nhijklmnopqrstuvwxyz\n";
             LoadFonts();
         }
 
@@ -33,7 +33,14 @@ namespace _06_Lettertype_Chaos
                 i++;
             }
 
-            Console.WriteLine("Fonts loaded!");
+            ResetTextFont();
+        }
+
+        private void ResetTextFont()
+        {
+            richTextBox1.SelectAll();
+            richTextBox1.SelectionFont = new Font(fontCollection[1], 12);
+            richTextBox1.DeselectAll();
         }
 
         private void LoadFile()
@@ -46,52 +53,24 @@ namespace _06_Lettertype_Chaos
 
         }
 
-        private void resetText()
-        {
-            Point p = new Point(0,0);
-            Random rnd = new Random();
-            char[] richText = richTextBox1.Text.ToCharArray();
-            richTextBox1.Text = "";
-
-            int counter = 0;
-            foreach (char ch in richText)
-            {
-                int randomNr = rnd.Next(1, CollectionSize);
- 
-                if (ch == '\n') {
-                    richTextBox1.Text += '\n';
-                    p.X = 0;
-                    p.Y += 1;
-                } else {
-                    richTextBox1.Text += ch;
-                    richTextBox1.Select(counter, counter + 1);
-                    richTextBox1.DeselectAll();
-                }
-                p.X += 1;
-                counter++;
-            }
-
-        }
-
         private void btnConvert_Click(object sender, EventArgs e)
         {
-            int i = 0;
-            foreach (char c in richTextBox1.Text)
+            Random rnd = new Random();
+
+            for (int j = 0; j <= richTextBox1.Text.Length; j++)
             {
-                i++;
-                richTextBox1.Select(i - 1, 1);
-
-                Random rnd = new Random();
                 int randomNr = rnd.Next(1, CollectionSize);
-                richTextBox1.SelectionFont = new Font(fontCollection[randomNr], 14);
 
+                richTextBox1.Select(j, 1);
+                richTextBox1.SelectionFont = new Font(fontCollection[randomNr], 12);
                 richTextBox1.DeselectAll();
             }
 
         }
+
         private void btnReset_Click(object sender, EventArgs e)
         {
-            resetText();
+            ResetTextFont();
         }
 
         private void btnOpenFile_Click(object sender, EventArgs e)
